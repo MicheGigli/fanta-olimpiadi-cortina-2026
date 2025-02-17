@@ -90,5 +90,47 @@ def add_atleta():
 
     return jsonify({"message": "Atleta aggiunto con successo!"}), 201
 
+@app.route('/api/atleti/<int:atleta_id>', methods=['DELETE'])
+def delete_atleta(atleta_id):
+    atleta = Atleta.query.get(atleta_id)
+    if not atleta:
+        return jsonify({"error": "Atleta non trovato"}), 404
+    
+    db.session.delete(atleta)
+    db.session.commit()
+    return jsonify({"message": "Atleta eliminato con successo!"}), 200
+
+@app.route('/api/nazioni/<int:nazione_id>', methods=['DELETE'])
+def delete_nazione(nazione_id):
+    nazione = Nazione.query.get(nazione_id)
+    if not nazione:
+        return jsonify({"error": "Nazione non trovata"}), 404
+    
+    db.session.delete(nazione)
+    db.session.commit()
+    return jsonify({"message": "Nazione eliminata con successo!"}), 200
+
+@app.route('/api/discipline/<int:disciplina_id>', methods=['DELETE'])
+def delete_disciplina(disciplina_id):
+    disciplina = Disciplina.query.get(disciplina_id)
+    if not disciplina:
+        return jsonify({"error": "Disciplina non trovata"}), 404
+
+@app.route('/api/atleti', methods=['DELETE'])
+def delete_all_atleti():
+    try:
+        num_deleted = db.session.query(Atleta).delete()
+        db.session.commit()
+        return jsonify({"message": f"Eliminati {num_deleted} atleti!"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
+    
+    db.session.delete(disciplina)
+    db.session.commit()
+    return jsonify({"message": "Disciplina eliminata con successo!"}), 200
+
+
 if __name__ == '__main__':
     app.run(debug=True)
