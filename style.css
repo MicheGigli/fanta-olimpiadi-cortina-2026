@@ -72,6 +72,15 @@ section {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Aggiunge un'ombra per migliorare la leggibilità */
 }
 
+header h1 a {
+  text-decoration: none; /* Rimuove la sottolineatura */
+  color: white; /* Mantiene il colore del testo */
+}
+
+header h1 a:hover {
+  color: #ddd; /* Cambia colore al passaggio del mouse */
+}
+
 /* Rimuove il bordo e l'ombra dall'immagine della homepage */
 .homepage-img {
   display: none;
