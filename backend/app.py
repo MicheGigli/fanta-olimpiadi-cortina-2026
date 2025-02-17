@@ -29,34 +29,30 @@ def get_atleti_columns():
     columns = [{"column_name": row[0], "data_type": row[1]} for row in result]
     return jsonify(columns)
 
-# API per ottenere tutte le discipline
 @app.route('/api/discipline', methods=['GET'])
 def get_discipline():
     discipline = Disciplina.query.all()
     return jsonify([{"id": d.id, "nome": d.nome} for d in discipline])
 
-# API per ottenere tutte le nazioni
 @app.route('/api/nazioni', methods=['GET'])
 def get_nazioni():
     nazioni = Nazione.query.all()
     return jsonify([{"id": n.id, "nome": n.nome} for n in nazioni])
 
-# API per ottenere atleti filtrati
 @app.route('/api/atleti', methods=['GET'])
 def get_atleti():
     disciplina_id = request.args.get('disciplina')
     nazione_id = request.args.get('nazione')
-
+    
     query = Atleta.query
     if disciplina_id:
         query = query.filter_by(disciplina_id=disciplina_id)
     if nazione_id:
         query = query.filter_by(nazione_id=nazione_id)
-
+    
     atleti = query.all()
     return jsonify([a.to_dict() for a in atleti])
 
-# API per aggiungere una disciplina
 @app.route('/api/discipline', methods=['POST'])
 def add_disciplina():
     data = request.json
@@ -69,7 +65,6 @@ def add_disciplina():
 
     return jsonify({"message": "Disciplina aggiunta con successo!", "id": nuova_disciplina.id}), 201
 
-# API per aggiungere una nazione
 @app.route('/api/nazioni', methods=['POST'])
 def add_nazione():
     data = request.json
@@ -82,8 +77,6 @@ def add_nazione():
 
     return jsonify({"message": "Nazione aggiunta con successo!", "id": nuova_nazione.id}), 201
 
-
-# API per aggiungere un atleta
 @app.route('/api/atleti', methods=['POST'])
 def add_atleta():
     data = request.json
@@ -127,6 +120,10 @@ def delete_disciplina(disciplina_id):
     disciplina = Disciplina.query.get(disciplina_id)
     if not disciplina:
         return jsonify({"error": "Disciplina non trovata"}), 404
+    
+    db.session.delete(disciplina)
+    db.session.commit()
+    return jsonify({"message": "Disciplina eliminata con successo!"}), 200
 
 @app.route('/api/atleti', methods=['DELETE'])
 def delete_all_atleti():
@@ -141,23 +138,22 @@ def delete_all_atleti():
 @app.route("/api/reset_atleti", methods=["POST"])
 def reset_atleti():
     try:
-        # Drop tabella se esiste
-        drop_query = text("DROP TABLE IF EXISTS atleta CASCADE;")
-        db.session.execute(drop_query)
+        db.session.execute(text("DROP TABLE IF EXISTS atleta CASCADE;"))
+        db.session.commit()
 
-        # Creazione nuova tabella
-        create_query = text("""
+        db.session.execute(text("""
             CREATE TABLE atleta (
                 id SERIAL PRIMARY KEY,
                 nome VARCHAR(100) NOT NULL,
                 disciplina_id INTEGER REFERENCES disciplina(id) ON DELETE CASCADE,
                 nazione_id INTEGER REFERENCES nazione(id) ON DELETE CASCADE
             );
-        """)
-        db.session.execute(create_query)
-
+        """))
         db.session.commit()
         return jsonify({"message": "Tabella atleta resettata con successo!"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
