@@ -143,25 +143,6 @@ def delete_all_atleti():
     db.session.commit()
     return jsonify({"message": "Disciplina eliminata con successo!"}), 200
 
-@app.route('/reset-atleti', methods=['GET'])
-def reset_atleti():
-    from sqlalchemy import text
-    with db.engine.connect() as connection:
-        try:
-            connection.execute(text("DROP TABLE IF EXISTS atleta CASCADE;"))
-            connection.execute(text("""
-                CREATE TABLE atleta (
-                    id SERIAL PRIMARY KEY,
-                    nome VARCHAR(100) NOT NULL,
-                    disciplina_id INTEGER REFERENCES disciplina(id) ON DELETE CASCADE,
-                    nazione_id INTEGER REFERENCES nazione(id) ON DELETE CASCADE
-                );
-            """))
-            db.session.commit()
-            return jsonify({"message": "Tabella atleti ricreata con successo!"})
-        except Exception as e:
-            db.session.rollback()
-            return jsonify({"error": str(e)}), 500
 
 @app.route("/api/reset_atleti", methods=["POST"])
 def reset_atleti():
