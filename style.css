@@ -57,8 +57,8 @@ section {
   height: 400px; /* Altezza della sezione */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   color: white; /* Testo bianco per contrasto */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per migliorare la leggibilità */
   text-align: center;
