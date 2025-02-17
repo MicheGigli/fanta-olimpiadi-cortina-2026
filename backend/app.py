@@ -6,8 +6,13 @@ from models import db, Atleta
 app = Flask(__name__)
 CORS(app)  # Permette chiamate dal frontend
 
+@app.route('/api/init_db', methods=['POST'])
+def init_db():
+    db.create_all()
+    return jsonify({"message": "Database creato con successo!"}), 200
+
 # Configura il database (usa l'URL di Render)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://user:password@host:port/dbname"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://fantasolimpiadi_db_user:AYA0Fs15FRfKDZQT9mTKSrlyx1FoVCsu@dpg-cupn6m9u0jms73bpnpb0-a/fantasolimpiadi_db"
 db.init_app(app)
 
 # API per ottenere atleti filtrati per disciplina e nazione
