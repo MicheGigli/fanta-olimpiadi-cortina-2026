@@ -10,9 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 disciplinaSelect.innerHTML = '<option value="">-- Seleziona una disciplina --</option>';
                 data.forEach(disciplina => {
-                    disciplinaSelect.innerHTML += `<option value="${disciplina.id}">${disciplina.nome}</option>`;
+                    disciplinaSelect.innerHTML += `<option value="${disciplina.nome}">${disciplina.nome}</option>`;
                 });
-            });
+            })
+            .catch(error => console.error("Errore nel caricamento delle discipline:", error));
     }
 
     // Funzione per caricare nazioni dal backend
@@ -22,9 +23,10 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 nazioneSelect.innerHTML = '<option value="">-- Seleziona una nazione --</option>';
                 data.forEach(nazione => {
-                    nazioneSelect.innerHTML += `<option value="${nazione.id}">${nazione.nome}</option>`;
+                    nazioneSelect.innerHTML += `<option value="${nazione.nome}">${nazione.nome}</option>`;
                 });
-            });
+            })
+            .catch(error => console.error("Errore nel caricamento delle nazioni:", error));
     }
 
     // Funzione per caricare gli atleti in base a disciplina e nazione
@@ -37,14 +39,18 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        fetch(`/api/atleti?disciplina=${disciplina}&nazione=${nazione}`)
+        fetch(`/api/atleti?disciplina=${encodeURIComponent(disciplina)}&nazione=${encodeURIComponent(nazione)}`)
             .then(response => response.json())
             .then(data => {
                 if (data.length === 0) {
                     listaAtleti.innerHTML = "<p>Nessun atleta trovato.</p>";
                 } else {
-                    listaAtleti.innerHTML = "<ul>" + data.map(atleta => `<li>${atleta.nome} - ${atleta.nazione}</li>`).join("") + "</ul>";
+                    listaAtleti.innerHTML = "<ul>" + data.map(atleta => `<li>${atleta.nome} (${atleta.nazione})</li>`).join("") + "</ul>";
                 }
+            })
+            .catch(error => {
+                console.error("Errore nel caricamento degli atleti:", error);
+                listaAtleti.innerHTML = "<p>Errore nel caricamento degli atleti.</p>";
             });
     }
 
