@@ -41,7 +41,7 @@ section {
 /* Stili specifici per la homepage */
 #homepage {
   background: url('logoolimpiadiinvernalipost.jpg') no-repeat center center;
-  background-size: cover; /* Adatta l'immagine alla sezione */
+  background-size: 30%; /* Adatta l'immagine alla sezione */
   height: 400px; /* Altezza della sezione */
   display: flex;
   flex-direction: column;
