@@ -11,7 +11,7 @@ class Nazione(db.Model):
     nome = db.Column(db.String(100), nullable=False)
 
 class Atleta(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(100), nullable=False)
     disciplina_id = db.Column(db.Integer, db.ForeignKey('disciplina.id'), nullable=False)
     nazione_id = db.Column(db.Integer, db.ForeignKey('nazione.id'), nullable=False)
