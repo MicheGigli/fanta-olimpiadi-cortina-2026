@@ -138,12 +138,6 @@ def delete_all_atleti():
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
-    
-    db.session.delete(disciplina)
-    db.session.commit()
-    return jsonify({"message": "Disciplina eliminata con successo!"}), 200
-
-
 @app.route("/api/reset_atleti", methods=["POST"])
 def reset_atleti():
     try:
