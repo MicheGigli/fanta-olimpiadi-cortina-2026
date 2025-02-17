@@ -1,5 +1,4 @@
 /* Stili base per il sito */
-
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -39,42 +38,12 @@ section {
   margin-bottom: 2rem;
 }
 
-/* Stili per lo slider della galleria */
-.slider {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.slides {
-  display: none;
-  width: 100%;
+/* Stili specifici per la homepage */
+.homepage-img {
+  max-width: 100%;
   height: auto;
-}
-
-.slides.active {
-  display: block;
-}
-
-/* Pulsanti di navigazione per lo slider */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 16px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+  border: 2px solid #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 footer {
