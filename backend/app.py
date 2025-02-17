@@ -163,5 +163,26 @@ def reset_atleti():
             db.session.rollback()
             return jsonify({"error": str(e)}), 500
 
+@app.route("/api/reset_atleti", methods=["POST"])
+def reset_atleti():
+    try:
+        # Drop tabella se esiste
+        drop_query = text("DROP TABLE IF EXISTS atleta CASCADE;")
+        db.session.execute(drop_query)
+
+        # Creazione nuova tabella
+        create_query = text("""
+            CREATE TABLE atleta (
+                id SERIAL PRIMARY KEY,
+                nome VARCHAR(100) NOT NULL,
+                disciplina_id INTEGER REFERENCES disciplina(id) ON DELETE CASCADE,
+                nazione_id INTEGER REFERENCES nazione(id) ON DELETE CASCADE
+            );
+        """)
+        db.session.execute(create_query)
+
+        db.session.commit()
+        return jsonify({"message": "Tabella atleta resettata con successo!"}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
