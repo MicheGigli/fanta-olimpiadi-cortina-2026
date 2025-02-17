@@ -65,6 +65,13 @@ section {
   padding: 20px;
 }
 
+#homepage h2 {
+  color: #FFD700; /* Cambia colore (es. blu acceso) */
+  text-align: center;
+  font-size: 2rem; /* Regola la grandezza del testo */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Aggiunge un'ombra per migliorare la leggibilità */
+}
+
 /* Rimuove il bordo e l'ombra dall'immagine della homepage */
 .homepage-img {
   display: none;
