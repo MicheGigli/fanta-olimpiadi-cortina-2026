@@ -12,7 +12,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
-db = SQLAlchemy(app)
 
 # Creazione delle tabelle
 with app.app_context():
