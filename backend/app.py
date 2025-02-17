@@ -2,50 +2,66 @@ import os
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from models import db, Atleta
+from models import db, Atleta, Disciplina, Nazione
 
 app = Flask(__name__)
 CORS(app)
 
-# Configura il database (usa la variabile d'ambiente di Render)
+# Configura il database usando la variabile d'ambiente di Render
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-# Funzione per inizializzare il database automaticamente
-def init_db():
-    with app.app_context():
-        db.create_all()
+# Creazione delle tabelle
+with app.app_context():
+    db.create_all()
 
-# API per ottenere atleti filtrati per disciplina e nazione
+# API per ottenere tutte le discipline
+@app.route('/api/discipline', methods=['GET'])
+def get_discipline():
+    discipline = Disciplina.query.all()
+    return jsonify([{"id": d.id, "nome": d.nome} for d in discipline])
+
+# API per ottenere tutte le nazioni
+@app.route('/api/nazioni', methods=['GET'])
+def get_nazioni():
+    nazioni = Nazione.query.all()
+    return jsonify([{"id": n.id, "nome": n.nome} for n in nazioni])
+
+# API per ottenere atleti filtrati
 @app.route('/api/atleti', methods=['GET'])
 def get_atleti():
-    disciplina = request.args.get('disciplina')
-    nazione = request.args.get('nazione')
+    disciplina_id = request.args.get('disciplina')
+    nazione_id = request.args.get('nazione')
 
     query = Atleta.query
-    if disciplina:
-        query = query.filter_by(disciplina=disciplina)
-    if nazione:
-        query = query.filter_by(nazione=nazione)
+    if disciplina_id:
+        query = query.filter_by(disciplina_id=disciplina_id)
+    if nazione_id:
+        query = query.filter_by(nazione_id=nazione_id)
 
     atleti = query.all()
     return jsonify([a.to_dict() for a in atleti])
 
-# Avvio dell'applicazione e inizializzazione automatica del database
-if __name__ == '__main__':
-    init_db()  # Esegui la creazione del database all'avvio
-    app.run(debug=True)
-
+# API per aggiungere un atleta
 @app.route('/api/atleti', methods=['POST'])
 def add_atleta():
     data = request.json
-    if not data or "nome" not in data or "nazione" not in data or "disciplina" not in data:
+    if not data or "nome" not in data or "disciplina_id" not in data or "nazione_id" not in data:
         return jsonify({"error": "Dati mancanti"}), 400
 
-    nuovo_atleta = Atleta(nome=data["nome"], nazione=data["nazione"], disciplina=data["disciplina"])
+    nuova_disciplina = Disciplina.query.get(data["disciplina_id"])
+    nuova_nazione = Nazione.query.get(data["nazione_id"])
+
+    if not nuova_disciplina or not nuova_nazione:
+        return jsonify({"error": "Disciplina o nazione non trovata"}), 404
+
+    nuovo_atleta = Atleta(nome=data["nome"], disciplina_id=data["disciplina_id"], nazione_id=data["nazione_id"])
     db.session.add(nuovo_atleta)
     db.session.commit()
 
     return jsonify({"message": "Atleta aggiunto con successo!"}), 201
+
+if __name__ == '__main__':
+    app.run(debug=True)
