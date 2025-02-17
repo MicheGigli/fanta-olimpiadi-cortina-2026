@@ -5,84 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fanta Olimpiadi - Cortina 2026</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Stili per il layout e lo slider */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #333;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    nav li {
-      display: inline;
-      margin: 0 1rem;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-    }
-    main {
-      padding: 2rem;
-      text-align: center;
-    }
-    h2 {
-      margin-bottom: 1rem;
-    }
-    .slider {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-    .slides {
-      display: none;
-      width: 100%;
-      height: auto;
-    }
-    .slides.active {
-      display: block;
-    }
-    /* Pulsanti per la navigazione */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      margin-top: -22px;
-      padding: 16px;
-      color: #fff;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-      background: rgba(0,0,0,0.5);
-    }
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
-    }
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -101,7 +23,7 @@
     <section id="gallery">
       <h2>Galleria Olimpiadi</h2>
       <div class="slider">
-        <!-- Utilizziamo Unsplash per immagini dinamiche tramite query URL -->
+        <!-- Immagini dinamiche da Unsplash -->
         <img class="slides active" src="https://source.unsplash.com/800x400/?olympics" alt="Olimpiadi 1">
         <img class="slides" src="https://source.unsplash.com/800x400/?cortina" alt="Olimpiadi 2">
         <img class="slides" src="https://source.unsplash.com/800x400/?ski" alt="Olimpiadi 3">
@@ -110,11 +32,14 @@
         <a class="next" onclick="changeSlide(1)">&#10095;</a>
       </div>
     </section>
-    <!-- Altre sezioni es. risultati e regolamento -->
+
+    <!-- Sezione Risultati -->
     <section id="results">
       <h2>Risultati</h2>
       <p>Qui verranno mostrati i risultati aggiornati.</p>
     </section>
+
+    <!-- Sezione Regolamento -->
     <section id="regolamento">
       <h2>Regolamento</h2>
       <p>Dettagli sul regolamento del Fanta Olimpiadi.</p>
@@ -125,33 +50,7 @@
     <p>&copy; 2025 Fanta Olimpiadi - Cortina 2026</p>
   </footer>
 
-  <script>
-    // JavaScript per gestire lo slider
-    let slideIndex = 0;
-    const slides = document.getElementsByClassName('slides');
-
-    function showSlide(index) {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove('active');
-      }
-      slides[index].classList.add('active');
-    }
-
-    function changeSlide(n) {
-      slideIndex += n;
-      if (slideIndex >= slides.length) {
-        slideIndex = 0;
-      }
-      if (slideIndex < 0) {
-        slideIndex = slides.length - 1;
-      }
-      showSlide(slideIndex);
-    }
-
-    // Cambia slide automaticamente ogni 5 secondi
-    setInterval(function() {
-      changeSlide(1);
-    }, 5000);
-  </script>
+  <!-- Script per gestire lo slider -->
+  <script src="script.js"></script>
 </body>
 </html>
