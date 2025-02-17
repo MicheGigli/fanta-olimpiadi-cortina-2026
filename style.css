@@ -14,7 +14,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   text-align: center;
 }
