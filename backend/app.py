@@ -6,13 +6,13 @@ from models import db, Atleta, Disciplina, Nazione
 
 app = Flask(__name__)
 CORS(app)
-db = SQLAlchemy(app)
 
 # Configura il database usando la variabile d'ambiente di Render
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+db = SQLAlchemy(app)
 
 # Creazione delle tabelle
 with app.app_context():
