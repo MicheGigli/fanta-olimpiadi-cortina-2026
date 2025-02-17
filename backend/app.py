@@ -17,6 +17,17 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+@app.route('/api/atleti/columns', methods=['GET'])
+def get_atleti_columns():
+    query = """
+    SELECT column_name, data_type
+    FROM information_schema.columns
+    WHERE table_name = 'atleta';
+    """
+    result = db.session.execute(query).fetchall()
+    columns = [{'name': col[0], 'type': col[1]} for col in result]
+    return jsonify(columns)
+
 # API per ottenere tutte le discipline
 @app.route('/api/discipline', methods=['GET'])
 def get_discipline():
