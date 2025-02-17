@@ -39,11 +39,23 @@ section {
 }
 
 /* Stili specifici per la homepage */
+#homepage {
+  background: url('logoolimpiadiinvernalipost.jpg') no-repeat center center;
+  background-size: cover; /* Adatta l'immagine alla sezione */
+  height: 400px; /* Altezza della sezione */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Testo bianco per contrasto */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per migliorare la leggibilità */
+  text-align: center;
+  padding: 20px;
+}
+
+/* Rimuove il bordo e l'ombra dall'immagine della homepage */
 .homepage-img {
-  max-width: 100%;
-  height: auto;
-  border: 2px solid #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
 }
 
 footer {
