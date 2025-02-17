@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atleti/title>
+  <title>Atleti</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
   <h1><a href="index.html">Atleti</a></h1>
   <nav>
@@ -14,35 +15,40 @@
       <li><a href="index.html">Home</a></li> 
       <li><a href="classifiche.html">Classifiche</a></li>
       <li><a href="regolamento.html">Regolamento</a></li>
-      <li><a href="Atleti.html">Regolamento</a></li>
+      <li><a href="atleti.html">Atleti</a></li>
     </ul>
   </nav>
 </header>
 
-  <main>
-    <section id="atleti">
-      <h2>Filtra Atleti</h2>
+<main>
+  <section id="atleti">
+    <h2>Filtra Atleti</h2>
 
+    <div class="filtri">
       <label for="disciplina-select">Disciplina:</label>
       <select id="disciplina-select">
-        <option value="">-- Seleziona una disciplina --</option>
+        <option value="">Tutte le discipline</option>
       </select>
 
       <label for="nazione-select">Nazione:</label>
       <select id="nazione-select">
-        <option value="">-- Seleziona una nazione --</option>
+        <option value="">Tutte le nazioni</option>
       </select>
 
-      <div id="lista-atleti">
-        <p>Seleziona una disciplina e una nazione per vedere gli atleti.</p>
-      </div>
-    </section>
-  </main>
+      <button id="filtra-btn">Filtra</button>
+    </div>
 
-  <footer>
-    <p>&copy; 2025 Fanta Olimpiadi - Cortina 2026</p>
-  </footer>
+    <div id="lista-atleti">
+      <p>Seleziona una disciplina e/o una nazione e clicca "Filtra".</p>
+    </div>
+  </section>
+</main>
 
-  <script src="script.js"></script>
+<footer>
+  <p>&copy; 2025 Fanta Olimpiadi - Cortina 2026</p>
+</footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>
