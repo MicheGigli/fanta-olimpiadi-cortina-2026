@@ -54,7 +54,7 @@ section {
 #homepage {
   background: url('home.png') no-repeat center center;
   background-size: 50%; /* Riduce l'immagine al 50% della dimensione originale */
-  height: 400px; /* Altezza della sezione */
+  height: 500px; /* Altezza della sezione */
   display: flex;
   flex-direction: column;
   align-items: center;
