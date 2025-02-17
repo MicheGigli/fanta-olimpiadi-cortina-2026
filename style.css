@@ -30,9 +30,16 @@ nav li {
 }
 
 nav a {
-  color: #fff;
+  color: #FFD700; /* Cambia colore del testo (es. oro) */
   text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
 }
+
+nav a:hover {
+  color: #FF4500; /* Cambia colore al passaggio del mouse (es. arancione) */
+}
+
 
 main {
   padding: 2rem;
