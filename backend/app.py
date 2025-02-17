@@ -37,3 +37,15 @@ def get_atleti():
 if __name__ == '__main__':
     init_db()  # Esegui la creazione del database all'avvio
     app.run(debug=True)
+
+@app.route('/api/atleti', methods=['POST'])
+def add_atleta():
+    data = request.json
+    if not data or "nome" not in data or "nazione" not in data or "disciplina" not in data:
+        return jsonify({"error": "Dati mancanti"}), 400
+
+    nuovo_atleta = Atleta(nome=data["nome"], nazione=data["nazione"], disciplina=data["disciplina"])
+    db.session.add(nuovo_atleta)
+    db.session.commit()
+
+    return jsonify({"message": "Atleta aggiunto con successo!"}), 201
