@@ -1,21 +1,31 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-import os
+from flask_cors import CORS
+from models import db, Atleta
 
 app = Flask(__name__)
+CORS(app)  # Permette chiamate dal frontend
 
-# Usa l'URL del database da Render (assicurati che sia definita come variabile d'ambiente)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///fallback.db")
+# Configura il database (usa l'URL di Render)
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://user:password@host:port/dbname"
+db.init_app(app)
 
-db = SQLAlchemy(app)
+# API per ottenere atleti filtrati per disciplina e nazione
+@app.route('/api/atleti', methods=['GET'])
+def get_atleti():
+    disciplina = request.args.get('disciplina')
+    nazione = request.args.get('nazione')
 
-# Creazione delle tabelle (solo al primo avvio)
-with app.app_context():
-    db.create_all()
+    query = Atleta.query
+    if disciplina:
+        query = query.filter_by(disciplina=disciplina)
+    if nazione:
+        query = query.filter_by(nazione=nazione)
 
-@app.route("/")
-def home():
-    return "Backend funzionante con il database!"
+    atleti = query.all()
+    return jsonify([a.to_dict() for a in atleti])
 
-if __name__ == "__main__":
+# Esegui l'app solo in modalità locale
+if __name__ == '__main__':
     app.run(debug=True)
+
