@@ -6,6 +6,7 @@ from models import db, Atleta, Disciplina, Nazione
 
 app = Flask(__name__)
 CORS(app)
+db = SQLAlchemy(app)
 
 # Configura il database usando la variabile d'ambiente di Render
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
@@ -19,13 +20,13 @@ with app.app_context():
 
 @app.route('/api/atleti/columns', methods=['GET'])
 def get_atleti_columns():
-    query = """
-    SELECT column_name, data_type
-    FROM information_schema.columns
-    WHERE table_name = 'atleta';
-    """
-    result = db.session.execute(query).fetchall()
-    columns = [{'name': col[0], 'type': col[1]} for col in result]
+    query = text("""
+        SELECT column_name, data_type 
+        FROM information_schema.columns 
+        WHERE table_name = 'atleta'
+    """)
+    result = db.session.execute(query)
+    columns = [{"column_name": row[0], "data_type": row[1]} for row in result]
     return jsonify(columns)
 
 # API per ottenere tutte le discipline
