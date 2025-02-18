@@ -9,8 +9,8 @@ body {
 
 header {
   background: url('home.png') no-repeat center center;
-  background-size: cover; /* Adatta l'immagine all'header */
-  height: 200px; /* Regola l'altezza per far stare bene il banner */
+  background-size: cover;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,6 +22,7 @@ header {
 nav ul {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 
 nav li {
@@ -30,16 +31,15 @@ nav li {
 }
 
 nav a {
-  color: #FFD700; /* Cambia colore del testo (es. oro) */
+  color: #FFD700;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
 
 nav a:hover {
-  color: #FF4500; /* Cambia colore al passaggio del mouse (es. arancione) */
+  color: #FF4500;
 }
-
 
 main {
   padding: 2rem;
@@ -53,35 +53,34 @@ section {
 /* Stili specifici per la homepage */
 #homepage {
   background: url('home.png') no-repeat center center;
-  background-size: 50%; /* Riduce l'immagine al 50% della dimensione originale */
-  height: 500px; /* Altezza della sezione */
+  background-size: 50%;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  color: white; /* Testo bianco per contrasto */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per migliorare la leggibilità */
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   text-align: center;
   padding: 20px;
 }
 
 #homepage h2 {
-  color: #FFD700; /* Cambia colore (es. blu acceso) */
+  color: #FFD700;
   text-align: center;
-  font-size: 2rem; /* Regola la grandezza del testo */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Aggiunge un'ombra per migliorare la leggibilità */
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 header h1 a {
-  text-decoration: none; /* Rimuove la sottolineatura */
-  color: white; /* Mantiene il colore del testo */
+  text-decoration: none;
+  color: white;
 }
 
 header h1 a:hover {
-  color: #ddd; /* Cambia colore al passaggio del mouse */
+  color: #ddd;
 }
 
-/* Rimuove il bordo e l'ombra dall'immagine della homepage */
 .homepage-img {
   display: none;
 }
@@ -94,4 +93,75 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+/* Stili moderni per la pagina atleti */
+.filtri {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.filtri label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.filtri select, .filtri button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.filtri button {
+  background-color: #FFD700;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filtri button:hover {
+  background-color: #FF4500;
+  color: white;
+}
+
+#lista-atleti {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.nazione-sezione {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 300px;
+  text-align: center;
+}
+
+.nazione-sezione h3 {
+  color: #FF4500;
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.nazione-sezione ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nazione-sezione li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.nazione-sezione li:last-child {
+  border-bottom: none;
 }
