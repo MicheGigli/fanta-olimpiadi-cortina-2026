@@ -9,8 +9,8 @@ body {
 
 header {
   background: url('home.png') no-repeat center center;
-  background-size: cover; /* Adatta l'immagine all'header */
-  height: 200px; /* Regola l'altezza per far stare bene il banner */
+  background-size: cover;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,14 +30,14 @@ nav li {
 }
 
 nav a {
-  color: #FFD700; /* Cambia colore del testo (es. oro) */
+  color: #FFD700;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
 
 nav a:hover {
-  color: #FF4500; /* Cambia colore al passaggio del mouse (es. arancione) */
+  color: #FF4500;
 }
 
 main {
@@ -49,40 +49,78 @@ section {
   margin-bottom: 2rem;
 }
 
-/* Stili specifici per la homepage */
-#homepage {
-  background: url('home.png') no-repeat center center;
-  background-size: 50%; /* Riduce l'immagine al 50% della dimensione originale */
-  height: 500px; /* Altezza della sezione */
+#filtri-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filtro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  color: white; /* Testo bianco per contrasto */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombra per migliorare la leggibilità */
+  position: relative;
+}
+
+.filtro label {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.filtro select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#lista-atleti {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.nazione-sezione {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 200px;
   text-align: center;
-  padding: 20px;
 }
 
-#homepage h2 {
-  color: #FFD700; /* Cambia colore (es. blu acceso) */
-  text-align: center;
-  font-size: 2rem; /* Regola la grandezza del testo */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Aggiunge un'ombra per migliorare la leggibilità */
+.nazione-sezione h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1.2rem;
 }
 
-header h1 a {
-  text-decoration: none; /* Rimuove la sottolineatura */
-  color: white; /* Mantiene il colore del testo */
+.nazione-sezione ul {
+  list-style: none;
+  padding: 0;
 }
 
-header h1 a:hover {
-  color: #ddd; /* Cambia colore al passaggio del mouse */
-}
-
-/* Rimuove il bordo e l'ombra dall'immagine della homepage */
-.homepage-img {
-  display: none;
+.nazione-sezione li {
+  background: #f8f8f8;
+  margin: 5px 0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 footer {
@@ -93,69 +131,4 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-}
-
-/* Stili per la pagina atleti */
-.filtri {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  margin: auto;
-}
-
-.filtri label {
-  font-weight: bold;
-}
-
-.filtri select {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.filtri button {
-  padding: 0.5rem 1rem;
-  background: #FFD700;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.filtri button:hover {
-  background: #FF4500;
-  color: white;
-}
-
-.nazione-sezione {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.nazione-sezione h3 {
-  background: #FFD700;
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-}
-
-.nazione-sezione ul {
-  list-style: none;
-  padding: 0;
-  text-align: center;
-}
-
-.nazione-sezione li {
-  background: white;
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
 }
