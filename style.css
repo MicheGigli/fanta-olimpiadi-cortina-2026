@@ -22,6 +22,7 @@ header {
 nav ul {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 
 nav li {
@@ -80,6 +81,10 @@ header h1 a:hover {
   color: #ddd;
 }
 
+.homepage-img {
+  display: none;
+}
+
 footer {
   background: #333;
   color: #fff;
@@ -90,51 +95,35 @@ footer {
   width: 100%;
 }
 
-/* Stili per la pagina atleti */
+/* Stili moderni per la pagina atleti */
 .filtri {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
-  align-items: flex-end;
-}
-
-.filtro-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.filtro-container label {
-  position: absolute;
-  top: -10px;
-  left: 15px;
-  background-color: #f4f4f4;
-  padding: 0 5px;
-  font-size: 0.9em;
-  font-weight: bold;
-  color: #333;
-}
-
-.filtro-container select {
+  gap: 10px;
+  flex-wrap: wrap;
   padding: 10px;
-  border: 2px solid #333;
-  border-radius: 5px;
-  font-size: 1em;
 }
 
-#filtra-btn {
-  padding: 10px 20px;
+.filtri label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.filtri select, .filtri button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.filtri button {
   background-color: #FFD700;
   border: none;
-  border-radius: 5px;
-  font-size: 1em;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
+  transition: background 0.3s;
 }
 
-#filtra-btn:hover {
+.filtri button:hover {
   background-color: #FF4500;
   color: white;
 }
@@ -144,19 +133,23 @@ footer {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  margin-top: 20px;
 }
 
 .nazione-sezione {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 15px;
   width: 300px;
+  text-align: center;
 }
 
 .nazione-sezione h3 {
-  text-align: center;
-  color: #333;
+  color: #FF4500;
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .nazione-sezione ul {
@@ -165,8 +158,8 @@ footer {
 }
 
 .nazione-sezione li {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
 }
 
 .nazione-sezione li:last-child {
